@@ -1,5 +1,5 @@
 # openrct2-server
-Dockerfile for running an openrct2 in a container
+Dockerfile for running an openrct2 multiplayer server in a container
 
 [Docker Hub milanb/openrct2-server](https://hub.docker.com/r/milanb/openrct2-server/)
 
