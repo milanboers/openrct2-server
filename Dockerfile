@@ -1,10 +1,12 @@
 FROM ubuntu:latest
 
-RUN apt-get update && apt-get install --no-install-recommends -y cmake libsdl2-dev libicu-dev gcc pkg-config libjansson-dev libspeex-dev libspeexdsp-dev libcurl4-openssl-dev libcrypto++-dev libfontconfig1-dev libfreetype6-dev libpng-dev libssl-dev libzip-dev xdg-utils curl
+RUN apt-get update && apt-get install -y software-properties-common
+RUN add-apt-repository -y ppa:openrct2/master
+RUN apt-get install -y openrct2=0.4.5*
 
-RUN curl -o /opt/openrct2.tar.gz http://cdn.limetric.com/games/openrct2/0.2.0/master/0aff800/9/OpenRCT2-0.2.0-linux-x86_64.tar.gz
+RUN groupadd --gid 1000 openrct2 && useradd --uid 1000 --gid 1000 -m openrct2
+USER openrct2
 
-RUN tar xzvf /opt/openrct2.tar.gz -C /opt
+VOLUME ["/park.park"]
+ENTRYPOINT ["openrct2", "host", "/park.park", "--headless"]
 
-VOLUME ["/opt/OpenRCT2/park.sc6"]
-ENTRYPOINT ["/opt/OpenRCT2/openrct2", "host", "/opt/OpenRCT2/park.sc6", "--headless"]

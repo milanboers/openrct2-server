@@ -5,5 +5,11 @@ Dockerfile for running an openrct2 multiplayer server in a container
 
 ## Usage
 ```bash
-$ docker run -d -p 11753:11753 -v /path/to/park.sc6:/opt/OpenRCT2/park.sc6 milanb/openrct2-server
+$ docker run -d -p 11753:11753 -v /path/to/some.park:/park.park milanb/openrct2-server
 ```
+
+## Troubleshoot
+
+### "Can't open /park.park"
+Make sure your park is world-readable: `chmod 644 /path/to/some.park`
+
